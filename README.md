@@ -1,5 +1,3 @@
-# To-Do List
-
 ## Project Overview
 Berno wants to create a simple, cloud-native operations repository that includes:
 1. Bootstrap templates for 4 cloud providers (starting with AWS/GCP).
