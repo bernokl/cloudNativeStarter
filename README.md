@@ -1,4 +1,4 @@
-# To-Do List for Gytis
+# To-Do List
 
 ## Project Overview
 Berno wants to create a simple, cloud-native operations repository that includes:
