@@ -1,9 +1,15 @@
 {
   description = "virtual environments";
 
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs";
-  inputs.devshell.url = "github:numtide/devshell";
-  inputs.flake-parts.url = "github:hercules-ci/flake-parts";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs";
+
+    devshell.url = "github:numtide/devshell";
+    devshell.inputs.nixpkgs.follows = "";
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
+  };
 
   outputs = inputs @ {
     self,
