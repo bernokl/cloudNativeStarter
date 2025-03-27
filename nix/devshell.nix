@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   perSystem = { pkgs, ... }: {
     devshells.default = {
       packages = with pkgs; [
@@ -9,7 +10,7 @@
         kind
         cilium-cli
         helmfile
-        nixfmt
+        nixpkgs-fmt
       ];
       commands = [
         {
@@ -171,18 +172,17 @@
           category = "setup";
         }
         {
-          package =
-            pkgs.writeShellScriptBin "move-provisioning-to-cluster-itself" ''
-              clusterctl init --core cluster-api --bootstrap kubeadm --control-plane kubeadm --infrastructure hetzner
-              export KUBECONFIG=$(pwd)/nix/kubeconfig
-              clusterctl move --to-kubeconfig $(pwd)/nix/kubeconfig.hetzner.yaml
-            '';
+          package = pkgs.writeShellScriptBin "move-provisioning-to-cluster-itself" ''
+            clusterctl init --core cluster-api --bootstrap kubeadm --control-plane kubeadm --infrastructure hetzner
+            export KUBECONFIG=$(pwd)/nix/kubeconfig
+            clusterctl move --to-kubeconfig $(pwd)/nix/kubeconfig.hetzner.yaml
+          '';
           name = "6-move-provisioning-to-cluster-itself";
           category = "setup";
         }
         {
           package = pkgs.writeShellScriptBin "delete-provisioned-cluster" ''
-            KUBECONFIG=$(pwd)/kubeconfig kubectl delete cluster my-cluster
+            KUBECONFIG=$(pwd)/nix/kubeconfig kubectl delete cluster my-cluster
           '';
           name = "7-delete-provisioned-cluster";
           category = "setup";
