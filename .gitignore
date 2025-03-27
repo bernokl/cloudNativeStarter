@@ -1,0 +1,5 @@
+.envrc
+.direnv
+nix/my-cluster.yaml
+*kubeconfig*
+nix/provision.log
