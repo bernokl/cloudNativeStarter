@@ -16,11 +16,24 @@
     nix-toolbox.inputs.nixpkgs.follows = "";
   };
 
-  outputs = inputs@{ self, flake-parts, devshell, nixpkgs, nix-toolbox }:
+  outputs =
+    inputs@{ self, flake-parts, devshell, nixpkgs, nix-toolbox }:
     flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [ devshell.flakeModule ./nix/devshell.nix ];
+      imports = [
+        devshell.flakeModule
+        ./nix/devshell.nix
+      ];
 
       systems = [ "x86_64-linux" ];
+
+      perSystem =
+        { pkgs, ... }:
+        let
+          mkHelm = pkgs.callPackage nix-toolbox.blueprints.mkHelm { };
+        in
+        {
+          legacyPackages.cardano-relay = import ./deployments/cardano-relay { inherit pkgs mkHelm inputs; };
+        };
 
     };
 }
