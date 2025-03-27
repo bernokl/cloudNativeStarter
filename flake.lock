@@ -38,6 +38,28 @@
         "type": "github"
       }
     },
+    "nix-toolbox": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nix2container": [],
+        "nixpkgs": []
+      },
+      "locked": {
+        "lastModified": 1729506361,
+        "narHash": "sha256-/ZIWnyef8eMu/fbUjPtHfNclv4jZQ2EYLAkjqiMiYHY=",
+        "owner": "DevPalace",
+        "repo": "nix-toolbox",
+        "rev": "f4c4d6d4be088929ff1e91f91d86b6c25b983fbb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DevPalace",
+        "repo": "nix-toolbox",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1738664418,
@@ -57,6 +79,7 @@
       "inputs": {
         "devshell": "devshell",
         "flake-parts": "flake-parts",
+        "nix-toolbox": "nix-toolbox",
         "nixpkgs": "nixpkgs"
       }
     }
